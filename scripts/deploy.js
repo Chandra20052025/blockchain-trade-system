@@ -1,8 +1,12 @@
-import hre from "hardhat";
+const { ethers } = require("hardhat");
 
 async function main() {
-  const trade = await hre.viem.deployContract("Trade");
-  console.log("Trade contract deployed to:", trade.address);
+  const Trade = await ethers.getContractFactory("Trade");
+  const trade = await Trade.deploy();
+
+  await trade.waitForDeployment();
+
+  console.log("Contract deployed to:", await trade.getAddress());
 }
 
 main().catch((error) => {
