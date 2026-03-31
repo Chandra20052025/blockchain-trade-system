@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blockchain Trade Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <polygon points="14,2 26,8 26,20 14,26 2,20 2,8" stroke="#00f5c4" stroke-width="1.5" fill="none"/>
+          <polygon points="14,7 21,11 21,17 14,21 7,17 7,11" fill="#00f5c4" opacity="0.15"/>
+          <circle cx="14" cy="14" r="3" fill="#00f5c4"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">ChainTrade</span>
+        <span class="logo-sub">Dashboard v2.0</span>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="wallet-info">
+      <div class="wallet-label">
+        <span class="dot" id="statusDot"></span>
+        <span class="wallet-status-text">Wallet</span>
+      </div>
+      <div class="wallet-address-box">
+        <span id="account">Not connected</span>
+      </div>
+      <button id="connectBtn" class="btn-connect">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Connect MetaMask
+      </button>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <nav>
+      <p class="nav-label">Navigation</p>
+      <ul>
+        <li class="nav-item active">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Trade
+        </li>
+        <li class="nav-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Trade Count
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="network-badge">
+        <span class="net-dot"></span>
+        <span>Ethereum Mainnet</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <h1 class="page-title">Trade Operations</h1>
+        <p class="page-sub">Manage and monitor your on-chain trades</p>
+      </div>
+      <div class="top-bar-right">
+        <div class="stat-chip">
+          <span class="chip-label">Network</span>
+          <span class="chip-val">ETH</span>
+        </div>
+        <div class="stat-chip">
+          <span class="chip-label">Status</span>
+          <span class="chip-val online">Live</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="panels-grid">
+
+      <section class="panel add-trade">
+        <div class="panel-header">
+          <div class="panel-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <div>
+            <h3>New Trade Entry</h3>
+            <p class="panel-sub">Submit a trade to the blockchain</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field-wrap">
+            <label class="field-label">Asset Name</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              <input type="text" id="assetName" placeholder="e.g. Bitcoin, Ethereum…" class="input-field" />
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">Amount</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <input type="number" id="amount" placeholder="0.00" class="input-field" />
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label class="field-label">Price (USD)</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <input type="number" id="price" placeholder="0.00" class="input-field" />
+            </div>
+          </div>
+        </div>
+
+        <button id="addTradeBtn" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Submit Trade to Blockchain
+        </button>
+      </section>
+
+      <section class="panel trade-count">
+        <div class="panel-header">
+          <div class="panel-icon accent-orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <h3>Trade Analytics</h3>
+            <p class="panel-sub">On-chain trade counter</p>
+          </div>
+        </div>
+
+        <div class="count-display">
+          <div class="count-ring">
+            <p id="tradeCount">0</p>
+            <span class="count-unit">trades</span>
+          </div>
+          <div class="count-meta">
+            <div class="meta-row">
+              <span class="meta-label">Recorded on-chain</span>
+              <span class="meta-val">Immutable</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Last synced</span>
+              <span class="meta-val" id="lastSync">—</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="getCountBtn" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Refresh Count
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // UI-only: update last sync time on refresh click
+    document.getElementById('getCountBtn')?.addEventListener('click', () => {
+      const el = document.getElementById('lastSync');
+      if (el) el.textContent = new Date().toLocaleTimeString();
+    });
+    // UI-only: active nav
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
